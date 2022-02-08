@@ -34,3 +34,27 @@ The idea for our movie ratings example is to randomly initialize some parameters
 
 At each step, the optimization process will calculate the match between each movie and each user using the dot product and will compare it to the actual rating that the user gave to each movie. I will then calculate the derivative of this value and step the weights by multiplying this by the learning rate. This will iteratively improve the loss and the recommendations.
 
+**Note on sparse data:** The main idea is to learn latent factors using only the observed data. That way, we can work with sparse matrices. Nevertheless, we can use the learned model to predict never-seen data instances and then use that information to make recommendations.
+
+### Creating the DataLoader
+
+For collaborative filtering, we can use a specific version of DataLoaders called the <code>CollabDataLoaders</code> class. Each resulting row will consider a user and an item. We can specify the item with <code>item_name</code> (see page 258).
+
+### Collaborative filtering from scratch
+
+To calculate the estimated rating for a particular movie and user combination, we have to look up the index of the movie in our movie latent factor matrix and the index of the user in our user latent factor matrix. Then, we can do our dot product between the two latent factor vectors.
+
+We can represent **look up in an index** as a matrix product. The trick is to replace our indices with one-hot encoded vectors.
+
+We prefer to do a matrix product instead of an index iteration to allow **vectorization** and a better integration with the deep learning framework.
+
+**Example:**
+```
+user_factor[3]  ----->  [0.8, 0.7, 0.1, -0.2]
+
+one_hot_3 = one_hot(3, n_users).float()
+user_factor.t() @ one_hot_3  -----> [0.8, 0.7, 0.1, -0.2]
+```
+
+If we do this for a few indices at once, we will have a matrix of one-hot-encoded vector, and that operation will be a matrix multiplication. The result is an **embedding matrix**.
+
