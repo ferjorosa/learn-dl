@@ -58,3 +58,72 @@ user_factor.t() @ one_hot_3  -----> [0.8, 0.7, 0.1, -0.2]
 
 If we do this for a few indices at once, we will have a matrix of one-hot-encoded vector, and that operation will be a matrix multiplication. The result is an **embedding matrix**.
 
+* **One-hot-encoded vector:** its purpose is to signal which combinatios of user/item are present in the data. That information will be used for learning the embedding matrix.
+* **Learning process**: the traditional collaborative filtering approach uses matrix multiplication and evaluates the result with minimum square loss. It compares the "predicted" score for user/item with the real score assigned by the user, where the loss is the mean squared error (considering all of the data instances).
+* **Updating the embedding matrix:** There are different approaches, but a traditional way (that can be extended for deep learning) is to use backpropagation with gradient descent. The embedding matrix is thus considered a matrix of "parameters".
+
+**Note on updating embedding matrices:** https://forums.fast.ai/t/how-do-we-actually-update-embedding-matrices/17005
+
+**Note on sigmoid range:** Generally, user preferences will live in a specific range (e.g., 0-5, 0-10). We can improve the performance of our model by restricting its predictions to this problem-specific range using the **sigmoid function**.
+
+### Inference and recommendations
+
+
+
+**Note:** This idea is independent of the specific model that we use (e.g, if we consider biases or if we use deep learning instead of dot product matrix factorization).
+
+### Embeddings and biases
+
+If we only consider the embedding matrix resulted from the dot product, we are ignoring both the user bias and the item bias. In our movies example, there could be some users that are just more positive or negative in their recommendations than others, and there could be some movies that are just plain better or worse than the others.
+
+In order to represent biases, we could add two extra latent matrices with a single column (i.e., a vector); one for representing user bias, and another for representing movie bias. Then, we would add this bias to the model prediction:
+
+```
+x[:,0] ----> user column of the user-movie combinations, ":" represents all data instances
+x[:,1] ----> movie column of the user-movie combinations, ":" represents all data instances
+
+(users_latent(x[:,0]) * movies_latent(x[:,1])).sum(dim=1) + user_bias(x[:,0]) + movie_bias(x[:,1])
+```
+
+<img src="images/example_movie_data.png" width="600">
+
+<img src="images/example_movie_model.png" width="600">
+
+### Weight decay
+
+**Weight decay**, or **L2 regularization**, consists of adding to your loss function the sum of all the weights squared. 
+
+* **Why do that?** Because when computing the gradients, it will add a contribution to them that will encourage the weights to be as small as possible.
+* **Why would it prevent overfitting?** The general idea is that the larger the coefficinets are, the sharper canyons we will have in the loss function. So, letting our model learn high parameters might cause it to fit all the data points in the training set with an overcomplex function that has very sharp changes, whi will lead to overfitting.
+
+Of course, limiting our weights from growing too much is going to hinder the training of the model, but it will generally yield a state where it generalizes better.
+
+### Bootstrapping collaborative filtering (i.e., cold-start problem)
+
+The biggest challenge with using collaborative filtering models in practice is the bootstrapping or cold-start problem. The most extreme version of this problem is having no users, and therefore no history to learn from. What products do you recommend to your very first user?
+
+A simple solution for a new user is to assign the mean of all of the embedding vectors of your other users, , but this has the problem that particular combination of latent factors may be not at all common (for instance, the average for science-fiction factor may be high, and the average for the action factor may be low, but it is not that common to find people who like science finction without action). In this simple case, **it would probably be better to pick a particular user to represent the average taste**.
+
+Better still is to use a tabular model based on user metadata to cnstruct your initial embedding vector. When a user signs up, think about what questions you could ask to help you understand their tastes. Then, you could create a model in which the target variable is a user's embedding vector (**multi-target regression**), and the features are the results of the questions you ask them, along with the sgnup metadata. 
+
+More information on this problem can be found on page 271.
+
+### Deep learning for collaborative filtering
+
+Neural networks learn deep non-linear relationships between users and items better than matrix factorization, and can scale to handle sparse inputs much better than matrix factorization with its dot product. 
+
+To turn matrix factorization into a deep learning model, we are going to substitute dot product with a neural network model. To do that, we first concatenate the outputs of the user and item embedding matrices and fed them into a set of neural layers that predicts whether the input user is likely to interact with the input item.
+
+<img src="images/neural_collaborative_filtering.png" width="600">
+
+Since we'll be concatenating the embedding matrices, rather tan taking their do product, the two embedding matrices can have different sizes (different number of latent factors). FastAI has a function <code>get_emb_sz</code> that returns recommended sizes for embedding matrices for your data, based on a heuristic that FASTAI has found to work well in practice.
+
+```
+embs = get_emb_sz(dls)
+embs
+[(944, 74), (1635,101)] # 944 unique users with a 74-dimension latent space, and 1635 unique movies with a 101-dimension latent space
+```
+
+### Complex deep learning architectures
+
+https://developer.nvidia.com/blog/how-to-build-a-winning-recommendation-system-part-2-deep-learning-for-recommender-systems/
