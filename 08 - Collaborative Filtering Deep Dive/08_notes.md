@@ -121,7 +121,8 @@ Since we'll be concatenating the embedding matrices, rather tan taking their do 
 ```
 embs = get_emb_sz(dls)
 embs
-[(944, 74), (1635,101)] # 944 unique users with a 74-dimension latent space, and 1635 unique movies with a 101-dimension latent space
+# 944 unique users with a 74-dimension latent space, and 1635 unique movies with a 101-dimension latent space
+[(944, 74), (1635,101)] 
 ```
 
 ### Complex deep learning architectures
