@@ -19,12 +19,14 @@ A neural network that is defined using a loop like this is called a recurrent ne
 
 # Language model using a simple RNN with a single hidden layer for each word
 class LMModel(Module):
-	
-	# vocab_sz: Number of unique words in the data
-	# seq_len:  n, the number of words considered to predict the n+1 word (target)
-	# n_hidden: number of hidden dimensions in the embedding and in the hidden
+
+	"""
+	vocab_sz: Number of unique words in the data
+	seq_len:  n, the number of words considered to predict the n+1 word (target)
+	n_hidden: number of hidden dimensions in the embedding and in the hidden
 			layers. We are considering a constant activation architecture (i.e.,
 			vocab_sz -> n_hidden -> n_hidden -> vocab_sz)
+	"""
 	def __init___(self, vocab_sz, seq_len, n_hidden):
 		self.i_h = nn.Embedding(vocab_sz, n_hidden)	# input-hidden
 		self.h_h = nn.Linear(n_hidden, n_hidden) 	# hidden-hidden
@@ -83,9 +85,13 @@ To use `LMModel_state`, we need to make sure the samples are going to be seen in
 
 FastAI implicitly does this for us when using `LMDataLoader`.
 
-#### Creating more signal
+#### Creating more signal for our RNN
 
 Another problem with `LMModel` is that we predict only on output word for each `n` input words. As a result, the amount of "signal" that we are feeding back to update the weights is not as large as it could be. It would be better if we predicted the next word after every single word, rather than every `n` words.
+
+<img src="images/every_word_predicted_rnn.png" width="600">
+
+<img src="images/every_word_predicted_rnn_unrolled.png" width="600">
 
 In order to do this, each sequence could have both a number `n` of input words and a number `n` of target words. The second list will be the same as the first, but offset by one element (the first of the input list and the last of the target list). Easy to see with an example:
 
@@ -143,7 +149,7 @@ def loss_func(inp, targ):
 a = torch.randn(3, 2, 5)
 a
 
->>>tensor([[[-1.1680,  0.3262, -0.8672, -0.1153, -0.5379],
+>>> tensor([[[-1.1680,  0.3262, -0.8672, -0.1153, -0.5379],
          [-1.4572, -0.4784, -1.1459,  0.5212,  0.3551]],
 
         [[ 0.4770,  1.4954,  0.3420, -0.5448,  0.3570],
@@ -156,7 +162,7 @@ a
 ```python
 a.view(-1, 5)
 
->>>tensor([[-1.1680,  0.3262, -0.8672, -0.1153, -0.5379],
+>>> tensor([[-1.1680,  0.3262, -0.8672, -0.1153, -0.5379],
         [-1.4572, -0.4784, -1.1459,  0.5212,  0.3551],
         [ 0.4770,  1.4954,  0.3420, -0.5448,  0.3570],
         [ 0.2030, -0.0864,  1.4416,  0.0626, -0.3554],
@@ -167,12 +173,20 @@ a.view(-1, 5)
 ```python
 a.view(-1)
 
->>>tensor([-1.1680,  0.3262, -0.8672, -0.1153, -0.5379, -1.4572, -0.4784, -1.1459,  0.5212,  0.3551,  0.4770,  1.4954,  0.3420, -0.5448,  0.3570,  0.2030, -0.0864,  1.4416,  0.0626, -0.3554,  0.2155, 0.0294, -0.1451,  0.4269,  1.1903, -0.1521,  0.1964,  1.1927,  0.6344,  0.3757])
+>>> tensor([-1.1680,  0.3262, -0.8672, -0.1153, -0.5379, -1.4572, -0.4784, -1.1459,  0.5212,  0.3551,  0.4770,  1.4954,  0.3420, -0.5448,  0.3570,  0.2030, -0.0864,  1.4416,  0.0626, -0.3554,  0.2155, 0.0294, -0.1451,  0.4269,  1.1903, -0.1521,  0.1964,  1.1927,  0.6344,  0.3757])
 ```
 
 ### Multilayer RNNs
 
+The obvious way to get a better model is to go deeper and consider multiple linear layers between the hidden state and the output activations in our RNN. This approach is known as **multilayer RNN**.
 
+In a multilayer RNN, we pass the activations from our recurrent neural network into a second recurrent neural network:
+
+**Example of a 2-layer RNN:**
+
+<img src="images/2layer_rnn.png" width="600">
+
+<img src="images/2layer_rnn_unrolled.png" width="600">
 
 ## References
 
