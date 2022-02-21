@@ -198,6 +198,16 @@ Now, because matrix multiplication is just multiplying numbers and adding them u
 
 This is a huge problem in computer science due to the nature of floating point numbers, which become less and less accurate the further away the numbers get from zero. This inaccuracy means that often the calculated gradients end up as zero or infinity for deep networks. This is commonly referred to as the **vanishing gradients or exploding gradients problem**. It means that in SGD, the weights are either not updated at all or jumpt to infinity. Either way, they won't improve with training.
 
+**Exploding activations:**
+
+<img src="images/exploding_activations.png">
+
+The problem of exploding activations could be solved by using `tanh` function so the values are limited to the [-1, 1] range, However, this would not protect us from the vanishing activations problem, where small changes in the gradient stop our model from training.
+
+**`tanh` activation function:**
+
+<img src="images/tanh_activations.png">
+
 Researchers have developed two main ways to tackle this problem:
 
 * Being careful about initialization.
@@ -205,7 +215,7 @@ Researchers have developed two main ways to tackle this problem:
 
 ### LSTM
 
-In the LSTM architecture, there are not one, but two, hidden states. In our base RNN, the hidden state `h` is the output of the RNN at the previous time step. That hidden state is responsible for two things:
+In the LSTM architecture [Hochreiter and Schmidhuber, 1997], there are not one, but two, hidden states. In our base RNN, the hidden state `h` is the output of the RNN at the previous time step. That hidden state is responsible for two things:
 
 * Having the right information for the output layer to predict the correct next word.
 * Retaining memory of everything that happened in the sentence.
@@ -214,7 +224,7 @@ In practice, RNNs are really bad at retaining memory of what happened much earli
 * The cell state will be responsible for keeping long short-term memory.
 * The hidden state will focus on the next token to predict.
 
-<img src="images/lstm_cell.png" width="600">
+<img src="images/lstm_diagram.png" width="600">
 
 **Explanation of the LSTM cell architecture**
 * Our input `x_t` enters on the left with the previous hidden state `h_t-1` and cell state `c_t-1`. 
@@ -364,8 +374,56 @@ learn = Learner(dls, LMModel_WeightTiedLSTM(len(vocab), 64, 2, 0.5),
 
 **important note:**  Although in theory this should work, there are current issues with RNNRegularer and the tuple returned by the `forward` method. I should look more into it. Neverhteless, we can instead use `TextLearner`, which seems to work fine.
 
+### Extra: Gated recurrent units
+
+Gated recurrent unit (GRU) is a new generation of RNN that can be seen as a variation of LSTM given that both are designed similarly and, in some cases, produce equally excellent results.
+
+Compared to LSTM, GRU got rid of the cell state and used the hidden state to transfer information. It is composed of three main gates:
+* **Update gate** (`z_t`).
+* **Reset gate** (`r_t`)
+* **New gate** (`n_t`)
+
+**Diagram:**
+
+<img src="images/gru_diagram.png" width="600">
+
+**Equations:**
+
+TODO: Put my own equations because those in the image are wrong (concatenation and  element-wise addition are confused)
+
+**PyTorch code: note; similar to LSTM-CELL, it needs a bit of testing and we can use the for loop of the NLP course to generate a full LSTM model**
+
+```python
+class GRUCell(Module):
+	
+	def __init__(self, ni, nh):
+		self.update_gate = nn.Linear(ni + nh, nh)
+		self.reset_gate = nn.Linear(ni + nh, nh)
+		self.new_gate = nn.Linear(nh + nh, nh)
+		
+	def forward(self, input, state)
+	h = state
+	x = input
+	hx = torch.cat([h, x], dim = 1)
+	update = torch.sigmoid(self.update_gate(hx))
+	reset = torch.sigmoid(self.reset_gate(hx))
+	reset = reset * h
+	rx = torch.cat([reset, x], dim = 1)
+	new = torch.tanh(rx)
+	out = (update * new) + (1 - update) * h
+	return out
+```
+
+### Extra: Batch normalization
+
+
+
 ## References
 
 Jaeger, H. (2002). Tutorial on training recurrent neural networks, covering BPPT, RTRL, EKF and the ”echo state network” approach. Vol. 5. GMD-Forschungszentrum Informationstechnik Bonn.
 
-Merity, S, et al. (2017). Regularizing and optimizing LSTM language models. arXiv preprint arXiv:1708.02182.
+Hochreiter, S. and J. Schmidhuber (1997). Long short-term memory. Neural Computation 9(8): 1735-1780.
+
+Merity, S, et al. (2017). Regularizing and optimizing LSTM language models. arXiv:1708.02182.
+
+Cho, Kyunghyun et al. (2014). On the Properties of Neural Machine Translation: Encoder-Decoder Approaches. arXiv:1409.1259
