@@ -233,7 +233,7 @@ The last gate is the **output gate**. It determines which information from the c
 
 **PyTorch code:**
 
-```
+```python
 class LSTMCell(Module):
 	
 	"""

@@ -34,7 +34,7 @@ In this context, **we cannot use the sigmoid function because the final result w
 
 For comparison, here are the formulas of the sigmoid and softmax functions:
 
-```
+```python
 def sigmoid(x): return 1 / 1+exp(x)
 def softmax(x): return exp(x) / exp(x).sum(dim=1, keepdim=True)
 ```

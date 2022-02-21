@@ -11,7 +11,7 @@ When using a pretrained model, <code>cnn_learner</code> will remove the last lay
 
 In our example, we called:
 
-```
+```python
 learn = cnn_learn(dls, restnet34, metrics = error_rate)
 learn.fine_tune(1)
 ```
