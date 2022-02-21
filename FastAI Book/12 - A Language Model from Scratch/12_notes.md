@@ -200,13 +200,13 @@ This is a huge problem in computer science due to the nature of floating point n
 
 **Exploding activations:**
 
-<img src="images/exploding_activations.png">
+<img src="images/exploding_activations.gif">
 
 The problem of exploding activations could be solved by using `tanh` function so the values are limited to the [-1, 1] range, However, this would not protect us from the vanishing activations problem, where small changes in the gradient stop our model from training.
 
 **`tanh` activation function:**
 
-<img src="images/tanh_activations.png">
+<img src="images/tanh_activations.gif">
 
 Researchers have developed two main ways to tackle this problem:
 
