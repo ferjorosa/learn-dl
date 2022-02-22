@@ -1,2 +1,2 @@
-# learn-fastai
-Learn Fastai &amp; Pytorch
+# learn-pytorch
+Learn PyTorch &amp; FastAI
