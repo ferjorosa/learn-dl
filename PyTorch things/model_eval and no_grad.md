@@ -1,5 +1,3 @@
-Questions:
-
 ### When i test my model, do I have to use `model.eval()` even though I am using `with torch.no_grad()` ?
 
 <a href="https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615/38">Question link</a>
