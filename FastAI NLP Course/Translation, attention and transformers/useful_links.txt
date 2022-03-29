@@ -1,0 +1,8 @@
+Attention Mechanism → Jay Alammar, Visualizing A Neural Machine Translation Model blog post, 2018.
+https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/
+
+Transformer → Jay Alammar, The Illustrated Transformer blog post, 2018.
+https://jalammar.github.io/illustrated-transformer/
+
+BERT → Jay Alammar, The Illustrated BERT blog post, 2018.
+http://jalammar.github.io/illustrated-bert/
