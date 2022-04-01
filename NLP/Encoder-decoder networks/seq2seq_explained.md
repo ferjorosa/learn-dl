@@ -14,7 +14,7 @@ Consider a very simple problem of predicting whether a movie review is positive 
 
 Sequence problems can be broadly classified into the following categories:
 
-<img src="images/sequence_probles.jpeg" width="600">
+<img src="images/sequence_problems.jpeg" width="600">
 
 Each rectangle is a vector and arrows represent functions (e.g., matric multiplication). Input vectors are in red, output vectors are in blue and green vectors hold the RNN's state (more on this soon). From left to right:
 
@@ -41,7 +41,7 @@ We focus on Sequence-to-Sequence (Seq2Seq) problems, which are a special case of
 
 At a very high-level, an encoder-decoder model can be though of as two blocks, the encoder and the decoder connected by a vector which we will refer to as the "context vector".
 
-<img src="encoder_decoder_overview.png" width="600">
+<img src="images/encoder_decoder_overview.png" width="600">
 
 * **Encoder**. The encoder processes each token in the input sequence. It tries to cram all the information about the input-sequence into a vector of fixed length (i.e., the context vector). After going through all the tokens, the encoder passes this vector onto the decoder.
 
@@ -83,7 +83,7 @@ The working of the decoder is different during the training testing phase.
 
 To train our decoder model, we usually utilize a technique called **Teacher Forcing** in which we feed the **true** output/token (and not the **predicted** output/token) from the previous time-step as input to the current time-step.
 
-<img src="decoder_training.png" width="600">
+<img src="images/decoder_training.png" width="600">
 
 As an example, consider the above diagram. In this example, the vector `[1 0 0 0 0 0]` for the word "<START>" is fed as the input vector. Now, ideally, our model should predict `y1_true = [0 1 0 0 0 0]`, but since my model has just started training,it will output something randome. Let the predicted value at time-step 1 be `y1_pred=[0.02 0.12 0.36 0.1 0.3 0.1]` meaning it predicts the 1st token to be "de". Now, should we use this y1_pred as the input at time-step 2?. We can do that, but in practice, it was seen that this leads to problems like slow convergence, model instability, and poor skill which is quite logical if you think. 
 

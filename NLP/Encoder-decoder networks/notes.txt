@@ -1,0 +1,2 @@
+Creo que el aprendizaje del modelo en translation_simple_pytorch se hace sin batches. En teoria deberia ser mas lento de esa forma
+Es por ello que estoy interesado en ver como lo hace Rachel en su curso utilizando FastAI
