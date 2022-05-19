@@ -17,6 +17,17 @@ for index, row in df.iterrows():
     print(row['column_1'], row['column_2'])
 ```
 
+### How to avoid `SettingWithCopyWarning`
+
+```python
+
+# WRONG - Will throw a warning
+df_ogrds[df_ogrds[subbrand_label].isin(df_char_normalization_map_subbrand["OLD"])][subbrand_label] = "OUTRAS MARCAS"
+
+# CORRECT
+df_ogrds.loc[df_ogrds[subbrand_label].isin(df_char_normalization_map_subbrand["OLD"]), subbrand_label] = "OUTRAS MARCAS"
+```
+
 ### How to count missing values per column
 
 ````python
