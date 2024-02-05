@@ -1,1 +1,0 @@
-Prior totransformers, recurrent architectures such as LSTMs were the state of the art in NLP. These architectures contain a feedback loop in the network connections that allows information to propagate from one stepto another, making them ideal for modeling sequential data like text. 

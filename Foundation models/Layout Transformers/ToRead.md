@@ -1,0 +1,1 @@
+https://medium.com/dair-ai/papers-explained-review-02-layout-transformers-b2d165c94ad5
