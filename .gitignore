@@ -1,6 +1,6 @@
 **/.ipynb_checkpoints/
 **/models/
-**/aclmdb/
+**/aclImdb/
 **/logs/
 .idea/
 *.csv
@@ -10,4 +10,5 @@
 *.amltmp
 *.amltemp
 **/.ipynb_aml_checkpoints/
+**/__pycache__
 **/runs/
