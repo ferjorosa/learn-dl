@@ -1,6 +1,9 @@
 **/.ipynb_checkpoints/
 **/models/
+**/aclmdb/
+**/logs/
 .idea/
+*.csv
 
 # AzureML notebooks
 *.amlignore
