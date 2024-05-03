@@ -4,6 +4,7 @@
 **/logs/
 .idea/
 *.csv
+*.DS_Store
 
 # AzureML notebooks
 *.amlignore
