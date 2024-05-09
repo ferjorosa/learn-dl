@@ -1,0 +1,1 @@
+I have created a specific Poetry environment because PyCD requires pgmpy 0.1.17, but the notebooks of PGMY require 0.1.25 due to an update of the networkx library (https://github.com/pgmpy/pgmpy/issues/1732) that affects Belief Propagation inference.

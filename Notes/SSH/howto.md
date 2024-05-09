@@ -2,7 +2,7 @@
 
 * Step 1: Generate the SSH key
 ```
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t "file_name" -C "your_email@example.com"
 ```
 
 * Step 2: Add key to the ssh-agent

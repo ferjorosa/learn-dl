@@ -1,14 +1,15 @@
 [tool.poetry]
-name = "notes-ai"
+name = "bayesian networks"
 version = "0.1.0"
 description = ""
 authors = ["Fernando Rodriguez <fernando.rodriguez@ailylabs.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10.6, <3.11"
-pycid = "^0.8.2"
+python = ">=3.10, <3.11"
+pgmpy = "^0.1.25"
 jupyter = "^1.0.0"
+matplotlib = "^3.8.4"
 
 
 [build-system]
