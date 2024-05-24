@@ -2425,6 +2425,45 @@ files = [
 tests = ["pytest"]
 
 [[package]]
+name = "pyagrum"
+version = "1.13.2"
+description = "Bayesian networks and other Probabilistic Graphical Models."
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyAgrum-1.13.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:412d4af8cdddb57d827e3d20ca078900a739ca558f5cf87c9bbae05640970b3a"},
+    {file = "pyAgrum-1.13.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:a248927a94e9ad487a283ab907f99e37b3907ea2e080b992a04ed20dde1d9825"},
+    {file = "pyAgrum-1.13.2-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:26072f4a50b06d02756f5198eaed404d584729adfbe96951fa97d21425c0c17e"},
+    {file = "pyAgrum-1.13.2-cp310-cp310-manylinux2014_x86_64.whl", hash = "sha256:0ca2e208c3dd212daf2299dc38fa6245a869a29e1972222ddbbe5d29cc8947ae"},
+    {file = "pyAgrum-1.13.2-cp310-cp310-win_amd64.whl", hash = "sha256:29d4220bc1365d054b7e7323a3328eb4fa32e4a00f85a6ba18006a314acb9f92"},
+    {file = "pyAgrum-1.13.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:40c1c857b93a12ac618fa740d64970dcbc4935c55400fa54314b0ce3ec04ab4e"},
+    {file = "pyAgrum-1.13.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:5b8673f93a4ebb7116281fa3b7a025bc3aa17d61c61534b83a45d329463172f0"},
+    {file = "pyAgrum-1.13.2-cp311-cp311-manylinux2014_aarch64.whl", hash = "sha256:ad70a416a6ae0d38b04ce8b8636980095a1774e6d9c338af49b91e56fe9d87b6"},
+    {file = "pyAgrum-1.13.2-cp311-cp311-manylinux2014_x86_64.whl", hash = "sha256:7d7558052252e8c2f7ace626fc55003d04546891a7479b1002dc2ea947cd9086"},
+    {file = "pyAgrum-1.13.2-cp311-cp311-win_amd64.whl", hash = "sha256:6ab988ddcb51f18ac2361791c57500ff26d7d529e40711737a7dc73046cf97eb"},
+    {file = "pyAgrum-1.13.2-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:f6e7f8dbd4251dcfb98ad26439f452433909920055201ba2fd500c2bd448fc8c"},
+    {file = "pyAgrum-1.13.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:46a41b79e3343489e03d7dc34869605d80390c7790d80a9809a1ce324cba2c0a"},
+    {file = "pyAgrum-1.13.2-cp312-cp312-manylinux2014_aarch64.whl", hash = "sha256:c4cf60a34e1ea7c7314e284336464efa5138ba661e1c9c79e384a8a4bfe0c3ac"},
+    {file = "pyAgrum-1.13.2-cp312-cp312-manylinux2014_x86_64.whl", hash = "sha256:1546bad08f9b9586d7aa22ea32caff66f3e8e31a657342536930d1e7124108b2"},
+    {file = "pyAgrum-1.13.2-cp312-cp312-win_amd64.whl", hash = "sha256:ec2385de3d2f2cf2921d540c92d9762a8ba177925eb7ff016af10a2290bffa38"},
+    {file = "pyAgrum-1.13.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:bc8147ca9e568e9484fe8cd81930a79b652e753ef11f94e1ced9b78de5fb9ae1"},
+    {file = "pyAgrum-1.13.2-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:386fbe264fc8063b17e0d77ca5ba97c852c4ca1a95a8ef2101b9c2a0c13ea37a"},
+    {file = "pyAgrum-1.13.2-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:40e10f429bd55b174a32db388725d6540bf05daefe5412e35c34db1875774a7c"},
+    {file = "pyAgrum-1.13.2-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:5c25640268621d06d6db46942256782be1d29421297425e9689cb3f8bb5324dd"},
+    {file = "pyAgrum-1.13.2-cp38-cp38-win_amd64.whl", hash = "sha256:4366cc1d6f1bf1ae99a2454256548d646008c6f8f01c3dee50aec6641d31b583"},
+    {file = "pyAgrum-1.13.2-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:709cf55b112f26932ff5f84ca99ffdf4ba1294e1b5f46c4cdb57540cb440c153"},
+    {file = "pyAgrum-1.13.2-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:396a3c19320c951c7c362b1c1dfa3e34d3ea8bb30312c6673f43f580d264713e"},
+    {file = "pyAgrum-1.13.2-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:e2e71376597b2571c74c0ea307e2f058672e2df48dc301dfaeaf5692a1cfecae"},
+    {file = "pyAgrum-1.13.2-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:2e4982ccc883b0145111865578491cbf0b30daad2d41dae1a1cc1ddeed7e9614"},
+    {file = "pyAgrum-1.13.2-cp39-cp39-win_amd64.whl", hash = "sha256:543588087b4ca4b4548520b5765c941b67062e48a8502736ecabaf5f097c4504"},
+]
+
+[package.dependencies]
+matplotlib = "*"
+numpy = "*"
+pydot = "*"
+
+[[package]]
 name = "pycid"
 version = "0.8.2"
 description = "Causal Influence Diagram library"
@@ -2456,6 +2495,25 @@ files = [
     {file = "pycparser-2.22-py3-none-any.whl", hash = "sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc"},
     {file = "pycparser-2.22.tar.gz", hash = "sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6"},
 ]
+
+[[package]]
+name = "pydot"
+version = "2.0.0"
+description = "Python interface to Graphviz's Dot"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pydot-2.0.0-py3-none-any.whl", hash = "sha256:408a47913ea7bd5d2d34b274144880c1310c4aee901f353cf21fe2e526a4ea28"},
+    {file = "pydot-2.0.0.tar.gz", hash = "sha256:60246af215123fa062f21cd791be67dda23a6f280df09f68919e637a1e4f3235"},
+]
+
+[package.dependencies]
+pyparsing = ">=3"
+
+[package.extras]
+dev = ["black", "chardet"]
+release = ["zest.releaser[recommended]"]
+tests = ["black", "chardet", "tox"]
 
 [[package]]
 name = "pygambit"
@@ -3504,4 +3562,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.6,<3.11"
-content-hash = "37720ff444a1c20198ef6c544e7bfb816cb655c16700c4395e771d3519b5de56"
+content-hash = "afa883346d492c8985543ca790d1681038a49209779d28a3655970d963493414"
