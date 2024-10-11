@@ -1,0 +1,1 @@
+Cuando PyTorch Lightning se encuentra con un data loader con "poco dato" te reduce automaticamente el batch size y no te dice nada. En mi caso le habia puesto batch size 64 para 500 instancias de entrenamiento y me lo bajaba a batch size 50. Pero, sin embargo, si le ponia batch size 32, me lo dejaba como estaba.
