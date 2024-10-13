@@ -1,0 +1,9 @@
+# Logs and checkpoints
+LOGS_DIR: "logs"
+
+# Dataset
+DATASET_BUILDER_PATH: "src/data/pretraining_data_builder.py"
+CACHE_DIR: "cache"
+DOWNLOAD_CFG_PATH: "tmp"
+DATA_NAME: "brandbank_5000_examples_10_groups"
+DATA_DIR: "/home/azureuser/cloudfiles/code/Users/Fernando.Rodriguez/ainn-eliza-rnd-data/multimodal_dataloader_v1/data/brandbank_5000_examples_10_groups/splits"

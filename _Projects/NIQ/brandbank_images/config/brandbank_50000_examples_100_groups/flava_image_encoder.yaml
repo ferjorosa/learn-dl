@@ -1,0 +1,23 @@
+# Logs and checkpoints
+LOGS_DIR: "logs"
+
+# Dataset
+DATASET_BUILDER_PATH: "src/data/hdf5_image_builder.py"
+CACHE_DIR: "cache"
+DOWNLOAD_CFG_PATH: "tmp"
+DATA_NAME: "brandbank_50000_examples_100_groups"
+DATA_DIR: "/home/azureuser/cloudfiles/code/Users/Fernando.Rodriguez/ainn-eliza-rnd-data/multimodal_dataloader_v1/data/brandbank_50000_examples_100_groups/splits"
+LABEL_NAME: "PRODUCT_GROUP"
+
+# Training
+MODEL_NAME: "FLAVA_IMAGE_ENCODER"
+BATCH_SIZE: 64
+LEARNING_RATE: 5e-5
+PRECISION: "16-mixed"
+NUM_EPOCHS: 4
+NUM_WORKERS: 1
+LOG_INTERVAL: 1
+
+# Compute related
+COMPUTE_ACCELERATOR: "gpu"
+COMPUTE_DEVICES: 1

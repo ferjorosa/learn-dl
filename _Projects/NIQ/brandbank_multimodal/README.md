@@ -1,0 +1,2 @@
+TODO:
+Right now we are separating between FlavaModel with just one loss and FlavaModel with 3 losses. We could generalize this code ebcause the idea of having multiple losses applies to different multimodal models.

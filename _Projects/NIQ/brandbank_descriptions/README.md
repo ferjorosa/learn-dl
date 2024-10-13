@@ -1,0 +1,3 @@
+El builder lo vamos a programar con GeneratorBasedBuilder que es el mas general, pero si quisieramos mas eficiencia deberiamos usar el ArrowBasedBuilder
+
+Otro aspecto a investigar es el de si podemos evitar cargar todo el archivo de descripciones en memoria, aunque en ese caso quizas no podriamos tener el archivo dividido por partes, quizas podriamos ordenarlo  por product_id e ir cargando por chunks de tal forma que nos quedemos con el penultimo PRODUCT_ID (para asegurarnos que hemos cargado toda la informacion del mismo).
