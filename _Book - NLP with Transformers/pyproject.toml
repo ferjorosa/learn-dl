@@ -23,6 +23,9 @@ rouge-score = "^0.1.2"
 matplotlib = "^3.9.2"
 scikit-learn = "^1.5.2"
 scikit-multilearn = "^0.2.0"
+langchain-huggingface = "^0.1.0"
+huggingface-hub = "^0.25.2"
+langchain = "^0.3.3"
 
 
 [build-system]
